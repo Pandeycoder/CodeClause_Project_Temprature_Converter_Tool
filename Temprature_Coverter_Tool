@@ -1,0 +1,192 @@
+package Temp_Converter;
+
+import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class Temprature extends JFrame implements ActionListener {
+
+	JLabel l,l1, l2, l3;
+     double a;
+	JTextField t1,t2;
+	JButton l4,l5,l6;
+    Choice c1,c2;
+    JFrame f1;
+    
+	public Temprature() {
+		setTitle("Converter");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+		l1 = new JLabel("TEMPRATURE CONVERTER");
+		l1.setBounds(150, 20, 590, 40);
+		l1.setForeground(Color.blue);
+		l1.setFont(new Font("Raleway", Font.BOLD, 35));
+		add(l1);
+		
+		l=new JLabel("Input   ");
+		l.setBounds(150,80,80,40);
+		l.setFont(new Font("Raleway",Font.BOLD,20));
+		add(l);
+		
+		t1=new JTextField();
+		t1.setBounds(250,80,250,40);
+		t1.setFont(new Font("Raleway",Font.BOLD,30));
+		t1.setForeground(Color.blue);
+		add(t1);
+
+		
+		
+		l2=new JLabel("From  ");
+		l2.setBounds(150,160,80,40);
+		l2.setFont(new Font("Raleway",Font.BOLD,20));
+		
+		
+		c1=new Choice();
+		c1.addItem("Fahrenheit(°F)");
+		c1.addItem("Kelvin(°K)");
+		c1.addItem("Celsius(°C)");
+		c1.setBackground(Color.white);
+		c1.setBounds(250,160,250,150);
+		c1.setFont(new Font("Arial",Font.BOLD,25));
+		c1.setForeground(new Color(68,37,173));
+		add(c1);
+		add(l2);
+		
+		
+		l3=new JLabel(" TO ");
+		l3.setBounds(150,220,50,40);
+		l3.setFont(new Font("Raleway",Font.BOLD,20));
+		
+		
+		c2=new Choice();
+		c2.addItem("Celsius(°C)");
+		c2.addItem("Fahrenheit(°F)");
+		c2.addItem("Kelvin(°K)");
+		
+		c2.setBackground(Color.white);
+		c2.setBounds(250,220,250,150);
+		c2.setFont(new Font("Arial",Font.BOLD,25));
+		c2.setForeground(new Color(68,37,173));
+		add(c2);
+		add(l3);
+		
+		l4=new JButton(" Result");
+		l4.setBounds(200,280,140,40);
+		l4.setForeground(Color.black);
+		l4.setBackground(Color.green);
+		l4.setFont(new Font("Raleway",Font.BOLD,30));
+		add(l4);
+		
+		l5=new JButton(" clear ");
+		l5.setBounds(430,280,140,40);
+		l5.setForeground(Color.black);
+		l5.setBackground(Color.red);
+		l5.setFont(new Font("Raleway",Font.BOLD,30));
+		add(l5);
+		
+		l6=new JButton(" exit ");
+		l6.setBounds(600,500,140,40);
+		l6.setForeground(Color.black);
+		l6.setBackground(Color.yellow);
+		l6.setFont(new Font("Raleway",Font.BOLD,30));
+		add(l6);
+		
+		
+		t2=new JTextField();
+		t2.setBounds(210,330,350,40);
+		t2.setFont(new Font("Arial",Font.BOLD,30));
+		t2.setForeground(Color.blue);
+		add(t2);
+		
+		getContentPane().setBackground(new Color(222, 255, 228));
+		setLayout(null);
+		setBounds(360, 40, 800, 650);
+		
+		
+		l4.addActionListener(this);
+		l5.addActionListener(this);
+		l6.addActionListener(this);
+		setVisible(true);
+
+         }
+	public void actionPerformed(ActionEvent ae)
+	{
+	   String s=(String)c1.getSelectedItem();
+       String s1=(String)c2.getSelectedItem();
+       if(ae.getSource()==l4)
+       {
+		
+     if(s.equals("Fahrenheit(°F)")&&s1.equals("Celsius(°C)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 double c=(double)(((d*5)-160)/9);
+    	 t2.setText(" "+c);
+    	 
+     }
+     else if(s.equals("Fahrenheit(°F)")&&s1.equals("Fahrenheit(°F)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 t2.setText(" "+d);
+     }
+     else if(s.equals("Fahrenheit(°F)")&&s1.equals("Kelvin(°K)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 double c=(double)((d-32)*5/9+273.15);
+    	 t2.setText(""+c);
+     }
+     else if(s.equals("Celsius(°C)")&&s1.equals("Fahrenheit(°F)"))
+     {
+    	  double d=Double.parseDouble(t1.getText());
+    	  double c=(double)(d*(9f/5)+32);
+    	  t2.setText(" "+c);
+     }
+     else if(s.equals("Celsius(°C)")&&s1.equals("Kelvin(°K)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 double c=(double)(d+273.15);
+    	 t2.setText(" "+c);
+     }
+     else if(s.equals("Celsius(°C)")&&s1.equals("Celsius(°C)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 t2.setText(" "+d);
+    	 
+     }
+  
+     else if(s.equals("Kelvin(°K)")&&s1.equals("Fahrenheit(°F)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 double c=(double)((d-273.15)*9/5+32);
+    	 t2.setText(" "+c);
+     }
+     else if(s.equals("Kelvin(°K)")&&s1.equals("Kelvin(°K)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 t2.setText(" "+d);
+     }
+     else if(s.equals("Kelvin(°K)")&&s1.equals("Celsius(°C)"))
+     {
+    	 double d=Double.parseDouble(t1.getText());
+    	 double c=(double)(d-273.15);
+    	 t2.setText(" "+c); 
+     } 
+    }	
+       else if(ae.getSource()==l5)
+       {
+    	   t1.setText("");
+    	   t2.setText("");
+       }
+       else if(ae.getSource()==l6)
+       {
+    	   System.exit(0);
+       }
+	}
+	public static void main(String[] args) {
+		new Temprature();
+	}
+
+}
